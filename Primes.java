@@ -1,46 +1,34 @@
 public class Primes {
     public static void main(String[] args) {
-        public class Primes {
-    public static void main(String[] args) {
         int n = Integer.parseInt(args[0]);
+        boolean[] nums = new boolean[n + 1];
+        int i = 3;
+        int p = 2;
+        int count = 0;
 
-        boolean[] isPrime = new boolean[n + 1];
-
-        int i = 2;
-        while (i <= n) {
-            isPrime[i] = true;
-            i++;
+        for (int j = 2; j < nums.length; j++) {
+            nums[j] = true;
         }
 
-        int p = 2;
-        while (p * p <= n) {
-            if (isPrime[p]) {
-                int multiple = 2 * p;
-                while (multiple <= n) {
-                    isPrime[multiple] = false;
-                    multiple += p;
+        while (p <= Math.sqrt(n)) {
+            while (i < nums.length) {
+                if (nums[i] == true && i % p == 0 && i != p) {
+                    nums[i] = false;
                 }
+                i++;
             }
+            i = p;
             p++;
         }
 
         System.out.println("Prime numbers up to " + n + ":");
-        int count = 0;
-        i = 2;
-        while (i <= n) {
-            if (isPrime[i]) {
-                System.out.println(i);
+        for (int j = 0; j < nums.length; j++) {
+            if (nums[j] == true) {
+                System.out.println(j);
                 count++;
             }
-            i++;
         }
-
-        int percent = (int) (100.0 * count / n);
-        System.out.println("There are " + count + " primes between 2 and " + n +
-                           " (" + percent + "% are primes)");
+        double percent = ((double)count / n) * 100;
+        System.out.println("There are " + count + " primes between 2 and " + n + " (" + (int)percent + "% are primes)");
     }
-}
-
-     }
-
 }
